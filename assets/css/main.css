@@ -25,6 +25,9 @@ body {
 	width:60px;
 	height:60px;
 }
+.github img {
+	width: 20px;
+}
 
 
 .infographic {
@@ -398,13 +401,18 @@ body {
 		background-size:320px;
 		background-repeat:repeat-y;
 	}
-
+	
+	.instructions .nav-pane {
+		width:300px;
+		
+	}
+	
 	.instructions .nav-tabs, .instructions .tab-content h3, .instructions-content {
 		width:200px;
 	}
 
 	.facts .col-xs-6 {
-		width:320px;
+		width:310px;
 	}
 
 	.download {
