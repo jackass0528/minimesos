@@ -362,17 +362,17 @@ body {
 	}
 
 	.github {
-		right:-200px;
+		right:-110px;
 		top:-30px;
 	}
 
 	.github img {
-		width: 20px;
+		width: 30px;
 	}
 	
 	.header-bg {
 		height:700px;	
-                background-size:320px;                
+                background-size:320px;
 	}
 
 	.header-bg .header h4 {
