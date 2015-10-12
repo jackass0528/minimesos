@@ -1,7 +1,7 @@
 body {
 	font-family: 'Lato';
 	font-weight: 300;
-	background: url("/assets/images/Background_1600.png") top center no-repeat;
+	background: url("/assets/images/Background_1600x900px.jpg") top center no-repeat;
 	
 }
 
@@ -161,7 +161,7 @@ body {
 	}
 
 	.header-bg {
-		height:768px;	
+		height:730px;	
                 background-size:768px;
                 
 	}
@@ -317,7 +317,7 @@ body {
 	}
 	
 	.header-bg {
-		height:768px;	
+		height:730px;	
                 background-size:970px;                
 	}
 
@@ -346,6 +346,7 @@ body {
 
 
 @media (min-width: 320px) and (max-width : 768px) {
+        
 	.container {
 		width:320px;
 	}
@@ -362,7 +363,7 @@ body {
 	}
 
 	.github {
-		right:-30px;
+		right:0px;
 		top:-30px;
 	}
 
@@ -371,7 +372,7 @@ body {
 	}
 	
 	.header-bg {
-		height:700px;	
+		height:700px; 
                 background-size:320px;
 	}
 
