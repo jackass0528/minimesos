@@ -8,7 +8,7 @@ var bootstrap = require('./node_modules/bootstrap/dist/js/bootstrap')
 var bootstrapStyle = require('./node_modules/bootstrap/dist/css/bootstrap.css')
 var customStyle = require('./site/assets/css/main.css')
 
-var ver = "0.2.11"
+var ver = "0.3.0"
 
 $(function () {
     $(".download-area > span").html("Latest version: " + ver)
