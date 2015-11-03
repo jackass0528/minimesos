@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.TreeMap;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
@@ -253,17 +254,17 @@ public class MesosCluster extends ExternalResource {
         }
     }
 
-    public static void printMasterIp(String clusterId) {
+    public static Optional<String> mesosMasterUrl(String clusterId) {
         List<Container> containers = dockerClient.listContainersCmd().exec();
         for (Container container : containers) {
             for (String name : container.getNames()) {
                 if (name.contains("minimesos-master-" + clusterId) ) {
                     String ipAddress = dockerClient.inspectContainerCmd(container.getId()).exec().getNetworkSettings().getIpAddress();
-                    LOGGER.info("http://" + ipAddress + ":5050");
-                    return;
+                    return Optional.of("http://" + ipAddress + ":5050");
                 }
             }
         }
+        return Optional.empty();
     }
 
 }
