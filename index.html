@@ -80,14 +80,16 @@
 							</div>
 							<h3>Step 3. Add a @ClassRule in your tests to start and destroy your Mesos test cluster</h3>
 							<div class="instructions-content">
-								<code>
-								@ClassRule<br/>
-								&nbsp;public static final MesosCluster CLUSTER = new MesosCluster(<br/>
-								&nbsp;&nbsp;MesosClusterConfig.builder()<br/>
-								&nbsp;&nbsp;&nbsp;.slaveResources(new String[] {"ports(*):[8080-8080]"} )<br/>
-								&nbsp;&nbsp;&nbsp;.build()<br/>
-								&nbsp;);<br/>
-								</code>
+                                <code>
+                                    @ClassRule<br/>
+                                    &nbsp;public static final MesosCluster CLUSTER = new MesosCluster(<br/>
+                                    &nbsp;&nbsp;new ClusterArchitecture.Builder()<br/>
+                                    &nbsp;&nbsp;&nbsp;.withZooKeeper()<br/>
+                                    &nbsp;&nbsp;&nbsp;.withMaster()<br/>
+                                    &nbsp;&nbsp;&nbsp;.withSlave("ports(*):[8080-8080]")<br/>
+                                    &nbsp;&nbsp;&nbsp;.build()<br/>
+                                    &nbsp;);<br/>
+                                </code>
 							</div>
 
 							
