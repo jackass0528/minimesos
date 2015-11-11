@@ -38,6 +38,7 @@ public class MesosMaster extends MesosContainer {
         return dockerClient.createContainerCmd(MESOS_MASTER_IMAGE + ":" + MESOS_IMAGE_TAG)
                 .withName("minimesos-master-" + MesosCluster.getClusterId() + "-" + getRandomId())
                 .withExposedPorts(new ExposedPort(MESOS_MASTER_PORT))
-                .withEnv(createMesosLocalEnvironment());
+                .withEnv(createMesosLocalEnvironment())
+                .withLabels(DEFAULT_LABELS);
     }
 }

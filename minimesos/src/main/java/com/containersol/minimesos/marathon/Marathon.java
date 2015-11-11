@@ -49,7 +49,8 @@ public class Marathon extends AbstractContainer {
                 .withExtraHosts("minimesos-zookeeper:" + this.zooKeeper.getIpAddress())
                 .withCmd("--master", "zk://minimesos-zookeeper:2181/mesos", "--zk", "zk://minimesos-zookeeper:2181/marathon")
                 .withExposedPorts(exposedPort)
-                .withPortBindings(portBindings);
+                .withPortBindings(portBindings)
+                .withLabels(DEFAULT_LABELS);
     }
 
 }

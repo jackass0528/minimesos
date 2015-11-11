@@ -35,7 +35,7 @@ public abstract class MesosContainer extends AbstractContainer {
     }
 
     protected TreeMap<String, String> getSharedEnvVars() {
-        TreeMap<String,String> envs = new TreeMap<>();
+        TreeMap<String, String> envs = new TreeMap<>();
         envs.put("GLOG_v", "1");
         envs.put("MESOS_EXECUTOR_REGISTRATION_TIMEOUT", "5mins");
         envs.put("MESOS_CONTAINERIZERS", "docker,mesos");

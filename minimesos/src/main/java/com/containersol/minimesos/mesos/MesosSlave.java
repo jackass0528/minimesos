@@ -66,7 +66,8 @@ public class MesosSlave extends MesosContainer {
                         Bind.parse(String.format("%s:/usr/bin/docker", dockerBin)),
                         Bind.parse("/var/run/docker.sock:/var/run/docker.sock")
                 )
-                .withExposedPorts(exposedPorts.toArray(new ExposedPort[exposedPorts.size()]));
+                .withExposedPorts(exposedPorts.toArray(new ExposedPort[exposedPorts.size()]))
+                .withLabels(DEFAULT_LABELS);
     }
 
     public static ArrayList<Integer> parsePortsFromResource(String resources) throws Exception {

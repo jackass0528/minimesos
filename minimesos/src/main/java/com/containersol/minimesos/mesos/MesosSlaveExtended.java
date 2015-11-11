@@ -55,6 +55,7 @@ public class MesosSlaveExtended extends MesosSlave {
                 .withPrivileged(true)
                 .withEnv(createMesosLocalEnvironment())
                 .withPid("host")
+                .withLabels(DEFAULT_LABELS)
                 .withBinds(
                         Bind.parse("/var/lib/docker:/var/lib/docker"),
                         Bind.parse("/sys/fs/cgroup:/sys/fs/cgroup"),

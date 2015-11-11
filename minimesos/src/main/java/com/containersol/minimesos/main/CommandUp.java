@@ -16,11 +16,18 @@ public class CommandUp {
     @Parameter(names = "--exposedHostPorts", description = "Expose the Mesos and Marathon UI ports on the host level (we recommend to enable this on Mac (e.g. when using docker-machine) and disable on Linux).")
     private boolean exposedHostPorts = false;
 
+    @Parameter(names = "--slaves", description = "The number of slaves avaiable in this cluster.")
+    private int slaves = 1;
+
     public String getMesosImageTag() {
         return mesosImageTag;
     }
 
     public boolean isExposedHostPorts() {
         return exposedHostPorts;
+    }
+
+    public int getSlaves() {
+        return slaves;
     }
 }

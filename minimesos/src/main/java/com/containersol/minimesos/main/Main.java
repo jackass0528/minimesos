@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.stream.IntStream;
 
 /**
  * Main method for interacting with minimesos.
@@ -21,7 +22,7 @@ public class Main {
 
     private static CommandUp commandUp;
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         JCommander jc = new JCommander();
         jc.setProgramName("minimesos");
 
@@ -65,12 +66,21 @@ public class Main {
         }
     }
 
+    private static String[] portRanges(final int nr) {
+        if (nr <= 0 || 32999 + nr * 1000 > 65535) {
+            return new String[]{};
+        }
+        String[] ranges = new String[nr];
+        IntStream.range(0, nr).forEach(i -> ranges[i] = String.format("ports(*):[%d-%d]", 33000 + i * 1000, 33999 + i * 1000));
+        return ranges;
+    }
+
     private static void doUp() {
         String clusterId = MesosCluster.readClusterId();
         if (clusterId == null) {
             MesosCluster cluster = new MesosCluster(
                     MesosClusterConfig.builder()
-                            .slaveResources(new String[]{"ports(*):[33000-34000]"})
+                            .slaveResources(portRanges(commandUp.getSlaves()))
                             .mesosImageTag(commandUp.getMesosImageTag())
                             .exposedHostPorts(commandUp.isExposedHostPorts())
                             .build()

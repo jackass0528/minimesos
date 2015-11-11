@@ -60,7 +60,8 @@ public class MesosMasterExtended extends MesosMaster {
         }
         createContainerCmd
                 .withEnv(createMesosLocalEnvironment())
-                .withPortBindings(portBindings);
+                .withPortBindings(portBindings)
+                .withLabels(DEFAULT_LABELS);
         return createContainerCmd;
     }
 

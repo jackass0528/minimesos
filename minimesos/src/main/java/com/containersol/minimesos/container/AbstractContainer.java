@@ -11,7 +11,9 @@ import com.jayway.awaitility.core.ConditionTimeoutException;
 import org.apache.log4j.Logger;
 
 import java.security.SecureRandom;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
@@ -31,6 +33,13 @@ public abstract class AbstractContainer {
     private boolean removed;
 
     protected DockerClient dockerClient;
+
+    public static final Map<String, String> DEFAULT_LABELS;
+
+    static {
+        DEFAULT_LABELS = new HashMap<>();
+        DEFAULT_LABELS.put("traefik.enable", "false");
+    }
 
     protected AbstractContainer(DockerClient dockerClient) {
         this.dockerClient = dockerClient;
