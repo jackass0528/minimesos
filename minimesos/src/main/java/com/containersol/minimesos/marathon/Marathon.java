@@ -16,7 +16,7 @@ public class Marathon extends AbstractContainer {
     private static Logger LOGGER = Logger.getLogger(Marathon.class);
 
     private static final String MARATHON_IMAGE = "mesosphere/marathon";
-    public static final String REGISTRY_TAG = "v0.8.1";
+    public static final String REGISTRY_TAG = "v0.11.1";
     public static final int MARATHON_PORT = 8080;
 
     private String clusterId;
@@ -47,7 +47,9 @@ public class Marathon extends AbstractContainer {
         return dockerClient.createContainerCmd(MARATHON_IMAGE + ":" + REGISTRY_TAG)
                 .withName("minimesos-marathon-" + clusterId + "-" + getRandomId())
                 .withExtraHosts("minimesos-zookeeper:" + this.zooKeeper.getIpAddress())
-                .withCmd("--master", "zk://minimesos-zookeeper:2181/mesos", "--zk", "zk://minimesos-zookeeper:2181/marathon")
+                .withCmd("--master", "zk://minimesos-zookeeper:2181/mesos",
+                        "--zk", "zk://minimesos-zookeeper:2181/marathon",
+                        "--event_subscriber", "http_callback")
                 .withExposedPorts(exposedPort)
                 .withPortBindings(portBindings)
                 .withLabels(DEFAULT_LABELS);
