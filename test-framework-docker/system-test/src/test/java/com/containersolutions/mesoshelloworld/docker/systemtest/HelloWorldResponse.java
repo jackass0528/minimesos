@@ -1,4 +1,4 @@
-package com.containersolutions.mesoshelloworld.systemtest;
+package com.containersolutions.mesoshelloworld.docker.systemtest;
 
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;

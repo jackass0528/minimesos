@@ -1,4 +1,4 @@
-package com.containersolutions.mesoshelloworld.scheduler;
+package com.containersolutions.mesoshelloworld.docker.scheduler;
 
 import org.apache.mesos.Protos.*;
 import org.apache.mesos.SchedulerDriver;

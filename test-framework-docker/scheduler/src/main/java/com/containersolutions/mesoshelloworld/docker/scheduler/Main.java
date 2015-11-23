@@ -1,4 +1,4 @@
-package com.containersolutions.mesoshelloworld.scheduler;
+package com.containersolutions.mesoshelloworld.docker.scheduler;
 
 import com.google.protobuf.ByteString;
 import org.apache.mesos.MesosSchedulerDriver;

@@ -1,8 +1,8 @@
-package com.containersolutions.mesoshelloworld.systemtest;
+package com.containersolutions.mesoshelloworld.docker.systemtest;
 
 import com.containersol.minimesos.docker.DockerContainersUtil;
 import com.containersol.minimesos.mesos.ClusterArchitecture;
-import com.containersolutions.mesoshelloworld.scheduler.Configuration;
+import com.containersolutions.mesoshelloworld.docker.scheduler.Configuration;
 import com.jayway.awaitility.Awaitility;
 import org.apache.log4j.Logger;
 import com.containersol.minimesos.MesosCluster;

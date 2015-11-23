@@ -1,4 +1,4 @@
-package com.containersolutions.mesoshelloworld.executor;
+package com.containersolutions.mesoshelloworld.docker.executor;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;

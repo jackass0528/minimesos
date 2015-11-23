@@ -1,4 +1,4 @@
-package com.containersolutions.mesoshelloworld.scheduler;
+package com.containersolutions.mesoshelloworld.docker.scheduler;
 
 import com.beust.jcommander.IParameterValidator;
 import com.beust.jcommander.JCommander;

@@ -1,6 +1,6 @@
 apply plugin: 'application'
 
-mainClassName = "com.containersolutions.mesoshelloworld.scheduler.Main"
+mainClassName = "com.containersolutions.mesoshelloworld.docker.scheduler.Main"
 ext {
     imageName = imagePrefix + '/mesos-hello-world-scheduler'
 }

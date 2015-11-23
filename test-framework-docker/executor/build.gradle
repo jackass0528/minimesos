@@ -1,6 +1,6 @@
 apply plugin: 'application'
 
-mainClassName = "com.containersolutions.mesoshelloworld.executor.Executor"
+mainClassName = "com.containersolutions.mesoshelloworld.docker.executor.Executor"
 ext {
     imageName = imagePrefix + '/mesos-hello-world-executor'
 }
