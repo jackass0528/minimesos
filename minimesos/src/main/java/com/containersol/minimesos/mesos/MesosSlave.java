@@ -25,8 +25,10 @@ public class MesosSlave extends MesosContainer {
 
     public static final String DEFAULT_PORT_RESOURCES = "ports(*):[31000-32000]";
     public static final String DEFAULT_RESOURCES = DEFAULT_PORT_RESOURCES + "; cpus(*):0.2; mem(*):256; disk(*):200";
+    public static final boolean DEFAULT_DOCKER_IN_DOCKER = false;
 
     private String mesosImageName = MESOS_SLAVE_IMAGE;
+    private boolean dockerInDocker = DEFAULT_DOCKER_IN_DOCKER;
 
     public MesosSlave(DockerClient dockerClient, ZooKeeper zooKeeperContainer) {
         super(dockerClient, zooKeeperContainer);
@@ -45,17 +47,21 @@ public class MesosSlave extends MesosContainer {
 
         String hostDir = MesosCluster.getMinimesosHostDir().getAbsolutePath();
 
+        int bindsCount = (dockerInDocker) ? 1 : 3;
+        Bind[] binds = new Bind[bindsCount];
+        binds[0]= Bind.parse(hostDir + ":" + hostDir);
+        if(!dockerInDocker) {
+            binds[1] = Bind.parse("/var/run/docker.sock:/var/run/docker.sock");
+            binds[2] = Bind.parse("/sys/fs/cgroup:/sys/fs/cgroup");
+        }
+
         return dockerClient.createContainerCmd( getMesosImageName() + ":" + getMesosImageTag() )
                 .withName("minimesos-agent-" + getClusterId() + "-" + getRandomId())
                 .withPrivileged(true)
                 .withEnv(createMesosLocalEnvironment())
                 .withPid("host")
                 .withLinks(new Link(getZooKeeperContainer().getContainerId(), "minimesos-zookeeper"))
-                .withBinds(
-                        Bind.parse("/var/run/docker.sock:/var/run/docker.sock"),
-                        Bind.parse("/sys/fs/cgroup:/sys/fs/cgroup"),
-                        Bind.parse(hostDir + ":" + hostDir)
-                );
+                .withBinds(binds);
     }
 
     @Override
@@ -99,4 +105,9 @@ public class MesosSlave extends MesosContainer {
         envs.put("MESOS_SWITCH_USER", "false");
         return envs;
     }
+
+    public void setDockerInDocker(boolean dockerInDocker) {
+        this.dockerInDocker = dockerInDocker;
+    }
+
 }

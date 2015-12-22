@@ -103,8 +103,9 @@ public class NewMesosClusterTest {
 
         MesosSlaveExtended mesosSlave = new MesosSlaveExtended(
                 dockerClient,
+                MesosSlave.DEFAULT_DOCKER_IN_DOCKER,
                 "ports(*):[9204-9204, 9304-9304]; cpus(*):0.2; mem(*):256; disk(*):200",
-                "5051",
+                5051,
                 cluster.getZkContainer(),
                 "containersol/mesos-agent",
                 MesosContainer.MESOS_IMAGE_TAG) {

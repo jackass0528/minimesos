@@ -12,22 +12,32 @@ public class MesosSlaveExtended extends MesosSlave {
 
     private static Logger LOGGER = Logger.getLogger(MesosSlaveExtended.class);
 
-    protected final String resources;
+    private final String resources;
+    private final int portNumber;
 
-    protected final String portNumber;
-
-    public MesosSlaveExtended(DockerClient dockerClient, String resources, String portNumber, ZooKeeper zooKeeperContainer, String mesosLocalImage, String registryTag) {
+    public MesosSlaveExtended(DockerClient dockerClient, boolean dockerInDocker, String resources, int portNumber, ZooKeeper zooKeeperContainer, String mesosLocalImage, String registryTag) {
         super(dockerClient, zooKeeperContainer);
         this.resources = resources;
         this.portNumber = portNumber;
-        setMesosImageName( mesosLocalImage );
-        setMesosImageTag( registryTag );
+        setDockerInDocker(dockerInDocker);
+        setMesosImageName(mesosLocalImage);
+        setMesosImageTag(registryTag);
+    }
+
+    public MesosSlaveExtended(DockerClient dockerClient, ZooKeeper zooKeeperContainer) {
+        this( dockerClient,
+                MesosSlave.DEFAULT_DOCKER_IN_DOCKER,
+                DEFAULT_RESOURCES,
+                MESOS_SLAVE_PORT,
+                zooKeeperContainer,
+                MESOS_SLAVE_IMAGE,
+                MESOS_IMAGE_TAG);
     }
 
     @Override
     protected CreateContainerCmd dockerCommand() {
         ArrayList<ExposedPort> exposedPorts= new ArrayList<>();
-        exposedPorts.add(new ExposedPort(Integer.parseInt(this.portNumber)));
+        exposedPorts.add(new ExposedPort(this.portNumber));
         try {
             ArrayList<Integer> resourcePorts = parsePortsFromResource(this.resources);
             for (Integer port : resourcePorts) {

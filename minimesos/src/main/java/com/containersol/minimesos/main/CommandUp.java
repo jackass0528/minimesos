@@ -31,6 +31,9 @@ public class CommandUp {
     @Parameter(names = "--timeout", description = "Time to wait for a container to get responsive, in seconds.")
     private int timeout = MesosContainer.DEFAULT_TIMEOUT_SEC;
 
+    @Parameter(names = "--dockerInDocker", description = "Should docker on mesos slaves use its own docker daemon")
+    private boolean dockerInDocker = false;
+
     public String getMesosImageTag() {
         return mesosImageTag;
     }
@@ -46,4 +49,9 @@ public class CommandUp {
     public int getTimeout() {
         return timeout;
     }
+
+    public boolean isDockerInDocker() {
+        return dockerInDocker;
+    }
+
 }
